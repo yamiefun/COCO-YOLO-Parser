@@ -1,6 +1,8 @@
 # COCO Parser
 [YOLOv4](https://github.com/AlexeyAB/darknet) is a famous and convenient tool for object detection, but the author only provides a pretrained model which is trained on [MS COCO](https://cocodataset.org/#home) dataset, which includes 80 categories of objects. 
+
 Usually, we only need some specific categories in those 80 categories, let's say we're only interested in cars, motorcycles and pedestrians in a street scene video, the other 77 categories are unnecessary. If we use the pretrained YOLOv4 without retraining it, it will cost lots of extra memories and have a worse performance.
+
 This repository can help you to download the specific categories in COCO dataset that you're interested in, and convert the annotations format from COCO to YOLOv4.
 
 ## Usage
