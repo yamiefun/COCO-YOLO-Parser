@@ -3,7 +3,7 @@
 
 Usually, we only need some specific categories in those 80 categories, let's say we're only interested in cars, motorcycles and pedestrians in a street scene video, the other 77 categories are unnecessary. If we use the pretrained YOLOv4 without retraining it, it will cost lots of extra memories and have a worse performance.
 
-This repository has two purpose:
+This repository has two purposes:
 1. Download only specific categories images and labels in COCO dataset.
 2. Convert the annotations format from COCO to YOLOv4 acceptable.
 
