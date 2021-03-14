@@ -6,7 +6,7 @@ Usually, we only need some specific categories in those 80 categories, let's say
 This repository can help you to download the specific categories in COCO dataset that you're interested in, and convert the annotations format from COCO to YOLOv4.
 
 ## Usage
-1. Download [COCO annotations](https://cocodataset.org/#download) and place it in this repository. For example, [2014 Train/Val annotations [241MB]](http://images.cocodataset.org/annotations/annotations_trainval2014.zip)
+1. Download [COCO annotations](https://cocodataset.org/#download) and place it in this repository. For example, [2014 Train/Val annotations [241MB]](http://images.cocodataset.org/annotations/annotations_trainval2014.zip). Please note that you don't keed to download images, only annotations are needed.
 2. In function `get_image_and_annotation` in `utils.py`, you need to set the annotation file path correctly.
 3. In function `get_image_and_annotation` in `utils.py`, you need to set the object categories that you want to download from COCO dataset as `target`. Note that this code will download only the images which have all object categories in `target` in it at the same time.
 4. Images will be downloaded in `train` folder, labels will be generated in `label` folder. 
