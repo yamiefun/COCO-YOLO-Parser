@@ -3,7 +3,9 @@
 
 Usually, we only need some specific categories in those 80 categories, let's say we're only interested in cars, motorcycles and pedestrians in a street scene video, the other 77 categories are unnecessary. If we use the pretrained YOLOv4 without retraining it, it will cost lots of extra memories and have a worse performance.
 
-This repository can help you to download the specific categories in COCO dataset that you're interested in, and convert the annotations format from COCO to YOLOv4.
+This repository has two purpose:
+1. Download only specific categories images and labels in COCO dataset.
+2. Convert the annotations format from COCO to YOLOv4 acceptable.
 
 ## Usage
 1. Download [COCO annotations](https://cocodataset.org/#download) and place it in this repository. For example, [2014 Train/Val annotations [241MB]](http://images.cocodataset.org/annotations/annotations_trainval2014.zip). Please note that you don't keed to download images, only annotations are needed.
