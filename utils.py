@@ -3,16 +3,19 @@ import requests
 import cv2
 import os
 from os import walk
+import argparse
 
-def env_set():
+def env_set(args):
     try:
-        os.mkdir('train')
+        #os.mkdir('train')
+        os.makedirs(args.img_out)
     except Exception:
-        pass
+        print(Exception)
     try:
-        os.mkdir('label')
+        os.makedirs(args.label_out)
+        #os.mkdir('label')
     except Exception:
-        pass
+        print(Exception)
 
 
 def create_obj_name_file(target):
@@ -39,9 +42,10 @@ def get_imageIds(catIds, mode='union'):
     return imgIds
 '''
 
-def get_image_and_annotation():
-    env_set()
-    coco = COCO('instances_train2017.json')
+def get_image_and_annotation(args):
+    env_set(args)
+    #coco = COCO('instances_train2017.json')
+    coco = COCO(args.anno)
 
     # list of category that you want to train
     target = ['car', 'motorcycle']
@@ -62,7 +66,6 @@ def get_image_and_annotation():
     total_num = len(imgIds)
     count = 0
 
-
     # get all image information by image id
     images = coco.loadImgs(imgIds)
 
@@ -70,16 +73,16 @@ def get_image_and_annotation():
         # download image
         img_data = requests.get(im['coco_url']).content
 
-	# save image
-        with open("train/"+im['file_name'], 'wb') as handler:
+        # save image
+        with open(args.img_out+im['file_name'], 'wb') as handler:
             handler.write(img_data)
 
         # get annotation
         annIds = coco.getAnnIds(imgIds=im['id'])
         anns = coco.loadAnns(annIds)
         
-	# create yolo format label file
-        label_file_name = f"label/{im['file_name'][:-4]}.txt"
+        # create yolo format label file
+        label_file_name = f"{args.label_out}/{im['file_name'][:-4]}.txt"
         with open(label_file_name, 'w') as f:
             for inst in anns:
                 if inst['category_id'] not in target_map:
@@ -96,15 +99,25 @@ def get_image_and_annotation():
         count += 1
 
 
-def create_train_txtfile():
-    _, _, filenames = next(walk('train'))
+def create_train_txtfile(args):
+    _, _, filenames = next(walk(args.img_out))
     with open('train.txt', 'w') as f:
         for filename in filenames:
             line = f'data/obj/{filename}\n'
             f.write(line)
 
 
+def arg_parse():
+    ap = argparse.ArgumentParser()
+    ap.add_argument('--anno', help='path to COCO annotation file', default=f'instances_train2017.json')
+    ap.add_argument('--img_out', help='path to store COCO images', default=f'image')
+    ap.add_argument('--label_out', help='path to store label files', default=f'label')
+    args = ap.parse_args()
+    return args
+
+
 if __name__ == "__main__":
 
-    get_image_and_annotation()
-    create_train_txtfile()
+    args = arg_parse()
+    get_image_and_annotation(args)
+    create_train_txtfile(args)
