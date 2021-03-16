@@ -103,8 +103,9 @@ def create_train_txtfile(args):
     _, _, filenames = next(walk(args.img_out))
     with open('train.txt', 'w') as f:
         for filename in filenames:
-            line = f'data/obj/{filename}\n'
-            f.write(line)
+            if ".jpg" in filename:
+                line = f'data/obj/{filename}\n'
+                f.write(line)
 
 
 def arg_parse():

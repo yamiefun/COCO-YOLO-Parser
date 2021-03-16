@@ -20,4 +20,8 @@ This repository has two purposes:
     ```
     $ python3 utils.py --anno instances_train2014.json
     ```
+    If you want to put images and labels in a same folder called `obj` which meets the requirement in the training YOLO [tutorial](https://github.com/AlexeyAB/darknet#how-to-train-to-detect-your-custom-objects), you can run
+    ```
+    $ python3 utils.py --img_out obj/ --label_out obj/
+    ```
 4. `train.txt` and `obj.names` will be generated as well. These two files are necessary for training YOLOv4. 
