@@ -8,6 +8,7 @@ This repository has two purposes:
 2. Convert the annotations format from COCO to YOLOv4 acceptable.
 
 ## Usage
+0. Install python environment by `pip3 install -r requestents.txt`
 1. Download [COCO annotations](https://cocodataset.org/#download) and place it in this repository. For example, [2014 Train/Val annotations [241MB]](http://images.cocodataset.org/annotations/annotations_trainval2014.zip). Please note that you don't need to download images, only annotations are needed.
 2. In function `get_image_and_annotation` in `utils.py`, you need to set the object categories that you want to download from COCO dataset as [target](https://github.com/yamiefun/COCO-YOLO-Parser/blob/5573b9408628a39e69b73d4ace3a91d1bd434b93/utils.py#L51). Note that this code will download only the images which have all object categories in `target` in it at the same time. If you're not sure if a category is included in COCO dataset, please take a look at the [category list](https://tech.amikelive.com/node-718/what-object-categories-labels-are-in-coco-dataset/).
 3. After setting the target, you can run `utils.py`. 
