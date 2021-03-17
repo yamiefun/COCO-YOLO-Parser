@@ -74,7 +74,7 @@ def get_image_and_annotation(args):
         img_data = requests.get(im['coco_url']).content
 
         # save image
-        with open(args.img_out+im['file_name'], 'wb') as handler:
+        with open(f"{args.img_out}/{im['file_name']}", 'wb') as handler:
             handler.write(img_data)
 
         # get annotation
